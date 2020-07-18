@@ -1,0 +1,79 @@
+package com.example.galaxycare.BackendCode.EVERYTHING;
+
+import java.util.Scanner;
+
+public class ApplyForVolunteer {
+
+    private String first_name;
+    private String last_name;
+    private short age;
+    private byte month_of_birth;
+    private byte day_of_birth;
+    private short year_of_birth;
+    private String email;
+    private String address_line_1;
+    private String address_line_2;
+    private String city;
+    private String state;
+    private int zipcode;
+    private String username;
+    private String password;
+
+    public ApplyForVolunteer() {
+        form();
+    }
+
+    void form() {
+        System.out.println("In order to join our volunteer program we require you to fill out a form with your information");
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("First Name:");
+        first_name = sc.next();
+
+        System.out.println("Last Name:");
+        last_name = sc.next();
+
+        System.out.println("Age (Must be OVER 16 and UNDER 30 in order to Qualify: ");
+        age = sc.nextShort();
+
+        System.out.println("Date of Birth - Month: ");
+        month_of_birth = sc.nextByte();
+
+        System.out.println("Date of Birth - Days: ");
+        day_of_birth = sc.nextByte();
+
+        System.out.println("Date of Birth - Year: ");
+        year_of_birth = sc.nextShort();
+
+        System.out.println("Email Address: ");
+        email = sc.next();
+
+        System.out.println("Address Line 1: ");
+        address_line_1 = sc.nextLine();
+
+        System.out.println("Address Line 2: ");
+        address_line_2 = sc.nextLine();
+
+        System.out.println("City: ");
+        city = sc.nextLine();
+
+        System.out.println("State: ");
+        state = sc.next();
+
+        System.out.println("Zipcode: ");
+        zipcode = sc.nextInt();
+
+        System.out.println("Username: ");
+        username = sc.next();
+
+        System.out.println("Password: ");
+        password = sc.next();
+
+        System.out.println("Confirm Password: ");
+        if (password != sc.next()) {
+            System.out.println("Passwords Must Match");
+            form();
+        } else return;
+    }
+}
