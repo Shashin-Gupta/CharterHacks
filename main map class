@@ -1,0 +1,114 @@
+package com.example.googlemaps;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng actionUrgentCare = new LatLng(37.291972, -121.986164);
+        mMap.addMarker(new MarkerOptions().position(actionUrgentCare).title("Action Urgent Care"));
+
+        LatLng sanJoseWalkIn = new LatLng(37.293319, -121.996060);
+        mMap.addMarker(new MarkerOptions().position(sanJoseWalkIn).title("San Jose - Prospect Walk-In Care"));
+
+        LatLng instantUrgentCareSC = new LatLng(37.323610, -121.989610);
+        mMap.addMarker(new MarkerOptions().position(instantUrgentCareSC).title("Instant Urgent Care - Stevens Creek"));
+
+        LatLng carbonHealthCup = new LatLng(37.325484, -122.011913);
+        mMap.addMarker(new MarkerOptions().position(carbonHealthCup).title("CarbonHealth Cupertino"));
+
+        LatLng forwardClinicSC = new LatLng(37.324171, -121.946467);
+        mMap.addMarker(new MarkerOptions().position(forwardClinicSC).title("Forward Clinic, Santa Clara"));
+
+        LatLng instantUrgentCareLE = new LatLng(37.351714, -121.992206);
+        mMap.addMarker(new MarkerOptions().position(instantUrgentCareLE).title("Instant Urgent Care - Lawrence Expy"));
+
+        LatLng eliteMedicalCenter = new LatLng(37.358652, -122.028146);
+        mMap.addMarker(new MarkerOptions().position(eliteMedicalCenter).title("Elite Medical Center"));
+
+        LatLng cvsHealth = new LatLng(37.332022, -121.906917);
+        mMap.addMarker(new MarkerOptions().position(cvsHealth).title("CVS Health COVID-19 Drive Thru Testing Site"));
+
+        LatLng sutterSJ = new LatLng(37.342025, -121.911111);
+        mMap.addMarker(new MarkerOptions().position(sutterSJ).title("Sutter San Jose - Coleman Walk-In Care"));
+
+        LatLng careNowLG = new LatLng(37.235559, -121.963716);
+        mMap.addMarker(new MarkerOptions().position(careNowLG).title("CareNow Urgent Care - Los Gatos"));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actionUrgentCare, 10F));
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.map_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Change the map type based on the user's selection.
+        switch (item.getItemId()) {
+            case R.id.normal_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                return true;
+            case R.id.hybrid_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                return true;
+            case R.id.satellite_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                return true;
+            case R.id.terrain_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                return true;
+            //case R.id.places:
+           //     Intent intent = new Intent(MapsActivity.this, locationList.class);
+            //    startActivity(intent);
+            //    return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+}
