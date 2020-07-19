@@ -9,7 +9,7 @@ public class PatientPage {
     private JPanel page1;
     private JScrollPane page2, page3;
 
-    private String[] pageNames = {"Open Volunteers", "Profile", "Messaging"};
+    private String[] pageNames = {"Profile", "Open Volunteers", "Messaging"};
 
     public PatientPage() {
 
@@ -38,6 +38,9 @@ public class PatientPage {
     private void preparePage1() {
         page1 = new JPanel();
         page1.setBackground(Color.WHITE);
+        panel.setLayout(new BorderLayout());
+
+
 
         tabbed.addTab(pageNames[0], page1);
     }
@@ -50,5 +53,17 @@ public class PatientPage {
         tabbed.addTab(pageNames[1], page2);
     }
 
+    private void preparePage3() {
+        page3 = new JScrollPane();
+        
+
+        // page3.setViewportView(sPanel);
+
+        tabbed.addTab(pageNames[2], page3);
+    }
+    
+    public static void main(String[] args) {
+        new PatientPage();
+    }
 
 }
